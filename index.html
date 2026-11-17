@@ -1,385 +1,177 @@
+este es el codigo de lo de silvia:
 <!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>NBA Central - Noticias de LeBron James, Estadísticas y Tabla</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <style>
-      /* Corrección de contraste para botón primary (WCAG AA > 4.5:1) */
-      .btn-primary {
-        background-color: #0056b3 !important;
-        border-color: #004999 !important;
-        color: #ffffff !important;
-      }
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility exercise</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f8;
+      color: #333;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-      /* Corrección de contraste para bordes de formulario (Silktide > 3:1) */
-      .form-control {
-        border-color: #6c757d !important;
-      }
+    /* Header */
+    h1 {
+      color: #2a9d8f;
+      margin-bottom: 20px;
+    }
 
-      /* Corrección de contraste para textos en fondo oscuro del footer */
-      footer .text-secondary {
-        color: #d1d5db !important;
-      }
+    /* Form container */
+    form {
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 450px;
+      width: 100%;
+    }
 
-      /* Enlace de salto accesible */
-      .skip-link {
-        position: absolute;
-        top: -40px;
-        left: 0;
-        background: #000000;
-        color: #ffffff;
-        padding: 8px 16px;
-        z-index: 9999;
-        text-decoration: none;
-      }
-      .skip-link:focus {
-        top: 0;
-      }
+    /* Fieldset and legend */
+    fieldset {
+      border: 2px solid #2a9d8f;
+      border-radius: 8px;
+      padding: 20px;
+    }
 
-      /* Ratios de contraste optimizados */
-      .badge-nba {
-        background-color: #0b4f9c;
-        color: #ffffff;
-      }
-      .badge-heat {
-        background-color: #8b001a;
-        color: #ffffff;
-      }
-      .bg-brand-red {
-        background-color: #a60000 !important;
-      }
-      .nav-link-contrast {
-        color: #ffffff !important;
-        font-weight: 600;
-      }
-      .nav-link-contrast:hover,
-      .nav-link-contrast:focus {
-        color: #ffcccc !important;
-        text-decoration: underline;
-      }
-      .text-muted-accessible {
-        color: #495057 !important;
-      }
+    legend {
+      font-weight: bold;
+      color: #264653;
+      padding: 0 10px;
+    }
 
-      /* Estilos para enlaces unificados en cards */
-      .card-link-unified {
-        text-decoration: none !important;
-        color: inherit !important;
-        display: block;
-      }
-      .card-link-unified:hover h3,
-      .card-link-unified:focus h3 {
-        text-decoration: underline;
-      }
+    /* Form controls */
+    .form-control {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
 
-      /* Tabla accesible */
-      .table-accessible caption {
-        caption-side: top;
-        font-weight: bold;
-        font-size: 1.1rem;
-        color: #212529;
-      }
-      .table-accessible th {
-        background-color: #f1f3f5;
-        color: #212529;
-      }
+    label {
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #264653;
+    }
 
-      /* Indicador de foco visible */
-      a:focus, button:focus, input:focus, select:focus, textarea:focus {
-        outline: 3px solid #0056b3 !important;
-        outline-offset: 2px;
-      }
-    </style>
-  </head>
-  <body>
+    /* Inputs and textarea */
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      padding: 10px;
+      border: 2px solid #757575;
+      border-radius: 6px;
+      font-size: 1em;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
 
-    <!-- Enlace de salto accesible -->
-    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: #1E7167;
+      box-shadow: 0 0 5px rgba(42, 157, 143, 0.3);
+      outline: none;
+    }
 
-    <!-- REGION 1: HEADER -->
-    <header>
-      <section class="d-none d-lg-block bg-light py-1 border-bottom" aria-label="Temas destacados de la NBA">
-        <div class="container d-flex flex-wrap align-items-center" style="font-size: 13px;">
-          <span class="font-weight-bold mr-2 text-dark">Es noticia:</span>
-          <a href="#noticia-tatum" class="text-dark mr-2">Traspasos NBA</a>
-          <span class="text-secondary mr-2" aria-hidden="true">|</span>
-          <a href="#tabla-posiciones" class="text-dark mr-2">Tabla Este</a>
-          <span class="text-secondary mr-2" aria-hidden="true">|</span>
-          <a href="#historias-lebron" class="text-dark mr-2">Especiales LeBron</a>
-          <span class="text-secondary mr-2" aria-hidden="true">|</span>
-          <a href="#noticia-morant" class="text-dark mr-2">Ja Morant</a>
-          <span class="text-secondary mr-2" aria-hidden="true">|</span>
-          <a href="#noticia-brown" class="text-dark mr-2">Jaylen Brown</a>
-        </div>
-      </section>
+    /* Submit button */
+    input[type="submit"],
+    button[type="submit"] {
+      background-color: #20796F;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-      <div class="container py-2 d-flex justify-content-between align-items-center">
-        <div>
-          <h1 class="h3 font-weight-bold m-0 text-danger" style="letter-spacing: 1px;">MARCA NBA</h1>
-          <span class="sr-only">Noticias, crónicas y estadísticas de baloncesto NBA</span>
-        </div>
+    input[type="submit"]:hover,
+    button[type="submit"]:hover {
+      background-color: #21867a;
+    }
 
-        <div class="d-flex align-items-center">
-          <button type="button" class="btn btn-outline-dark btn-sm rounded-pill px-3" aria-label="Abrir panel de inicio de sesión de usuario">
-            <i class="bi bi-person mr-1" aria-hidden="true"></i> Iniciar sesión
-          </button>
-        </div>
-      </div>
+    /* Screen reader only utility (accessible text hiding) */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
-      <!-- REGION 2: NAV -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-brand-red py-1" aria-label="Navegación principal del sitio">
-        <div class="container">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú de navegación">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link nav-link-contrast" href="#">LeBron James <span class="sr-only">(sección activa)</span></a>
-              </li>
-              <li class="nav-item"><a class="nav-link nav-link-contrast" href="#noticias-nba">Rumores y Traspasos</a></li>
-              <li class="nav-item"><a class="nav-link nav-link-contrast" href="#historias-lebron">Especiales LeBron</a></li>
-              <li class="nav-item"><a class="nav-link nav-link-contrast" href="#tabla-posiciones">Tabla y Estadísticas</a></li>
-              <li class="nav-item"><a class="nav-link nav-link-contrast" href="#contacto-titulo">Contacto</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+    /* Contact info */
+    .contact-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 25px;
+    }
 
-    <!-- REGION 3: MAIN -->
-    <main id="contenido-principal">
+    .contact-info img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
 
-      <!-- Noticia Principal (Portada LeBron) -->
-      <section class="container my-4" aria-labelledby="titular-lebron-principal">
-        <div class="row">
-          <div class="col-12 col-lg-8 mb-4">
-            <article class="card bg-dark text-white border-0">
-              <img class="card-img" src="https://pbs.twimg.com/media/GTlqTdcaQAAK49Z.jpg:large" alt="LeBron James celebrando una canasta en la duela">
-              <div class="card-img-overlay d-flex flex-column justify-content-end p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.92), rgba(0,0,0,0));">
-                <div>
-                  <span class="badge badge-nba mb-2">NBA LEGEND</span>
-                  <h2 id="titular-lebron-principal" class="h3 card-title font-weight-bold">
-                    <a href="#contacto-titulo" class="text-white text-decoration-none">¿Por qué no habrá otro jugador como LeGOAT en la historia?</a>
-                  </h2>
-                  <p class="card-text text-light">Un balance estadístico y competitivo sobre la longevidad y el dominio sin precedentes de LeBron James en el baloncesto profesional.</p>
-                </div>
-                <div class="d-flex justify-content-between align-items-center mt-2">
-                  <small class="text-light">Por: Ethan Guzmán</small>
-                  <small class="text-light"><i class="bi bi-chat-fill" aria-hidden="true"></i> 14 comentarios</small>
-                </div>
-              </div>
-            </article>
-          </div>
+    label img {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Accessibility exercises</h1>
+  </header>
+  <main>
+    <h2>ARIA exercise 1 (after)</h2>
 
-          <!-- Lateral con noticias de la liga (enlaces unificados: imagen y texto juntos) -->
-          <div class="col-12 col-lg-4" id="noticias-nba">
-            <h2 class="h5 font-weight-bold border-bottom pb-2">Noticias de la Liga</h2>
-            
-            <article class="mb-3" id="noticia-tatum">
-              <a href="#tabla-posiciones" class="card-link-unified d-flex align-items-center">
-                <img src="https://a.espncdn.com/photo/2025/0513/r1491884_1296x729_16-9.jpg" alt="" aria-hidden="true" style="width: 100px; height: 70px; object-fit: cover;">
-                <div class="pl-3">
-                  <span class="badge badge-nba">Boston Celtics</span>
-                  <h3 class="h6 mb-1 mt-1 text-dark font-weight-bold">¿Cómo afectó la lesión de Jayson Tatum al esquema de Boston?</h3>
-                </div>
-              </a>
-            </article>
-            <hr>
-
-            <article class="mb-3" id="noticia-brown">
-              <a href="#contacto-titulo" class="card-link-unified d-flex align-items-center">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg7M2-q9VkGbFIha2CJbY-1jB3Yf8dSPoLCQ&s" alt="" aria-hidden="true" style="width: 100px; height: 70px; object-fit: cover;">
-                <div class="pl-3">
-                  <span class="badge badge-nba">Documental</span>
-                  <h3 class="h6 mb-1 mt-1 text-dark font-weight-bold">Jaylen Brown protagoniza la nueva temporada de la serie Starting 5</h3>
-                </div>
-              </a>
-            </article>
-            <hr>
-
-            <article class="mb-3" id="noticia-morant">
-              <a href="#contacto-titulo" class="card-link-unified d-flex align-items-center">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW4SKOb9wgUctOS2hNarQKem7phyU9fgZ_Ng&s" alt="" aria-hidden="true" style="width: 100px; height: 70px; object-fit: cover;">
-                <div class="pl-3">
-                  <span class="badge badge-heat">Rumores</span>
-                  <h3 class="h6 mb-1 mt-1 text-dark font-weight-bold">¿Ja Morant a Miami Heat? Los rumores que agitan el mercado</h3>
-                </div>
-              </a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Sección Especial: Artículos de LeBron James -->
-      <section class="container my-5" id="historias-lebron" aria-labelledby="titulo-especiales-lebron">
-        <h2 id="titulo-especiales-lebron" class="font-weight-bold border-bottom pb-2 mb-4">Crónicas y Análisis de LeBron James</h2>
-        <div class="row">
-          <div class="col-12 col-md-6 mb-4">
-            <article class="card border-0 shadow-sm h-100">
-              <img src="https://media.gettyimages.com/id/2186563426/es/foto/san-antonio-tx-lebron-james-of-the-los-angeles-lakers-pre-game-ritual-before-the-game-against.jpg?s=612x612&w=0&k=20&c=ArTYuyaEDV71ESGTwTNelF6jdrGGK4jPYLFsFECYLm0=" class="card-img-top" alt="LeBron James realizando su ritual previo al juego en San Antonio">
-              <div class="card-body">
-                <span class="badge badge-nba mb-2">Reflexión</span>
-                <h3 class="h5 card-title font-weight-bold">
-                  <a href="#contacto-titulo" class="text-dark text-decoration-none">LeBron James: "El retiro está cada vez más cerca"</a>
-                </h3>
-                <p class="card-text text-muted-accessible">El astro angelino analiza su futuro profesional, el desgaste físico y sus últimos objetivos en la liga.</p>
-                <small class="text-muted-accessible">Autor: Ethan Guzmán</small>
-              </div>
-            </article>
-          </div>
-
-          <div class="col-12 col-md-6 mb-4">
-            <article class="card border-0 shadow-sm h-100">
-              <img src="https://media.gettyimages.com/id/963158878/es/foto/boston-ma-lebron-james-of-the-cleveland-cavaliers-reacts-in-the-second-half-against-the-boston.jpg?s=612x612&w=0&k=20&c=g673Ya2jlKTYrurHAh_XeFlh-blHUYGCDPuoXCGK_3E=" class="card-img-top" alt="LeBron James reaccionando con intensidad durante la serie ante Boston en los playoffs de 2018">
-              <div class="card-body">
-                <span class="badge badge-nba mb-2">Historia NBA</span>
-                <h3 class="h5 card-title font-weight-bold">
-                  <a href="#contacto-titulo" class="text-dark text-decoration-none">LeBron 2018: El mayor nivel individual en la historia de los playoffs</a>
-                </h3>
-                <p class="card-text text-muted-accessible">Revisión jugada a jugada de la postemporada donde cargó a Cleveland con números y actuaciones irrepetibles.</p>
-                <small class="text-muted-accessible">Autor: Ethan Guzmán</small>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- CASO DE USO 1: TABLA DE DATOS ACCESIBLE -->
-      <section class="container my-5" id="tabla-posiciones" aria-labelledby="tabla-nba-titulo">
-        <h2 id="tabla-nba-titulo" class="font-weight-bold mb-3">Conferencia Este - Tabla de Posiciones NBA</h2>
-        <div class="table-responsive">
-          <table class="table table-bordered table-striped table-accessible">
-            <caption>Clasificación de equipos de la Conferencia Este de la NBA</caption>
-            <thead>
-              <tr>
-                <th scope="col" class="text-center">Posición</th>
-                <th scope="col">Franquicia</th>
-                <th scope="col" class="text-center">Partidos Ganados (G)</th>
-                <th scope="col" class="text-center">Partidos Perdidos (P)</th>
-                <th scope="col" class="text-center">Efectividad (%PCT)</th>
-                <th scope="col" class="text-center">Diferencia (DIF)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row" class="text-center">1</th>
-                <td>Boston Celtics</td>
-                <td class="text-center">64</td>
-                <td class="text-center">18</td>
-                <td class="text-center font-weight-bold">.780</td>
-                <td class="text-center">-</td>
-              </tr>
-              <tr>
-                <th scope="row" class="text-center">2</th>
-                <td>New York Knicks</td>
-                <td class="text-center">50</td>
-                <td class="text-center">32</td>
-                <td class="text-center font-weight-bold">.610</td>
-                <td class="text-center">14.0</td>
-              </tr>
-              <tr>
-                <th scope="row" class="text-center">3</th>
-                <td>Milwaukee Bucks</td>
-                <td class="text-center">49</td>
-                <td class="text-center">33</td>
-                <td class="text-center font-weight-bold">.598</td>
-                <td class="text-center">15.0</td>
-              </tr>
-              <tr>
-                <th scope="row" class="text-center">4</th>
-                <td>Cleveland Cavaliers</td>
-                <td class="text-center">48</td>
-                <td class="text-center">34</td>
-                <td class="text-center font-weight-bold">.585</td>
-                <td class="text-center">16.0</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- CASO DE USO 2: FORMULARIO CORTO ACCESIBLE -->
-      <section class="container my-5" id="contacto-titulo" aria-labelledby="contacto-heading">
-        <div class="row justify-content-center">
-          <div class="col-12 col-lg-8 border rounded p-4 bg-light">
-            <h2 id="contacto-heading" class="font-weight-bold mb-2">Comunidad NBA: Envía tu debate o pregunta</h2>
-            <p class="text-muted-accessible mb-4">Participa en la discusión editorial sobre el legado de LeBron James o envía sugerencias de análisis táctico.</p>
-            
-            <form action="#" method="post" novalidate>
-              <div class="form-group">
-                <label for="nombre">Nombre completo <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="name" required aria-required="true">
-              </div>
-
-              <div class="form-group">
-                <label for="correo">Correo electrónico <span class="text-danger" aria-hidden="true">*</span></label>
-                <input type="email" class="form-control" id="correo" name="correo" autocomplete="email" required aria-required="true">
-              </div>
-
-              <div class="form-group">
-                <label for="tema">Tema de debate <span class="text-danger" aria-hidden="true">*</span></label>
-                <select class="form-control" id="tema" name="tema" required aria-required="true">
-                  <option value="">Selecciona una opción...</option>
-                  <option value="goat">Debate GOAT: LeBron vs Jordan</option>
-                  <option value="playoffs">Rendimiento en Playoffs 2018</option>
-                  <option value="celtics">Estatus de Boston Celtics</option>
-                  <option value="otro">Otro tema de la liga</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="comentario">Tu opinión o mensaje <span class="text-danger" aria-hidden="true">*</span></label>
-                <textarea class="form-control" id="comentario" name="comentario" rows="4" required aria-required="true"></textarea>
-              </div>
-
-              <div class="form-check mb-3">
-                <input type="checkbox" class="form-check-input" id="privacidad" name="privacidad" required aria-required="true">
-                <label class="form-check-label" for="privacidad">Acepto los términos para la publicación de mi comentario.</label>
-              </div>
-
-              <button type="submit" class="btn btn-primary px-4 py-2 font-weight-bold">Enviar comentario</button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- REGION 4: FOOTER -->
-    <footer class="bg-dark text-light pt-4 pb-3">
-      <div class="container text-center">
-        <p class="mb-2 font-weight-bold">Portal Editorial de Baloncesto NBA</p>
-        <p class="small text-secondary mb-3">Desarrollado para la práctica de accesibilidad web.</p>
-        
-        <ul class="list-inline mb-3">
-          <li class="list-inline-item"><a href="#noticias-nba" class="text-light">Aviso legal</a></li>
-          <li class="list-inline-item text-secondary" aria-hidden="true">•</li>
-          <li class="list-inline-item"><a href="#historias-lebron" class="text-light">Política de privacidad</a></li>
-          <li class="list-inline-item text-secondary" aria-hidden="true">•</li>
-          <li class="list-inline-item"><a href="#tabla-posiciones" class="text-light">Estadísticas oficiales</a></li>
-        </ul>
-
-        <div class="mb-3">
-          <a href="#contacto-titulo" aria-label="Visitar nuestro perfil oficial de Twitter NBA" class="text-light mx-2" style="font-size: 1.3rem;">
-            <i class="bi bi-twitter-x" aria-hidden="true"></i>
-          </a>
-          <a href="#titular-lebron-principal" aria-label="Suscribirse al canal RSS de noticias NBA" class="text-light mx-2" style="font-size: 1.3rem;">
-            <i class="bi bi-rss-fill" aria-hidden="true"></i>
-          </a>
+    <form>
+      <fieldset>
+        <legend>Contact us</legend>
+        <div class="form-control">
+          <label for="name">
+            <span class="sr-only">Name</span>
+            <img src="https://img.icons8.com/small/2x/user.png" alt="" aria-hidden="true" />
+          </label>
+          <input type="text" id="name" name="name" autocomplete="name" />
         </div>
 
-        <p class="small text-secondary m-0">© 2026 Ethan Guzmán. Todos los derechos reservados.</p>
-      </div>
-    </footer>
+        <div class="form-control">
+          <label for="email">
+            <span class="sr-only">e-mail</span>
+            <img src="https://img.icons8.com/small/2x/email.png" alt="" aria-hidden="true" />
+          </label>
+          <input type="email" id="email" name="email" autocomplete="email" />
+        </div>
 
-    <!-- Dependencias de Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
-  </body>
+        <div class="form-control">
+          <label for="message">
+            <span class="sr-only">Message</span>
+            <img src="https://img.icons8.com/small/2x/speech-bubble.png" alt="" aria-hidden="true" />
+          </label>
+          <textarea id="message" name="message" cols="30" rows="10"></textarea>
+        </div>
+
+        <button type="submit">Send</button>
+      </fieldset>
+    </form>
+
+    <p class="contact-info">
+      <img alt="" aria-hidden="true" src="https://img.icons8.com/small/2x/phone.png" />
+      <span class="sr-only">Phone: </span>+52 (333) 45 34 567
+    </p>
+  </main>
+</body>
 </html>
